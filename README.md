@@ -43,7 +43,7 @@ GIF created with ...
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+It's been a long time since the last time I built an Android app =]] I made a lot of bugs and spent hours fixing it.
 
 ## License
 
