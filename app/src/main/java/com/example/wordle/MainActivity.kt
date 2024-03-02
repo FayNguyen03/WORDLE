@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
+import android.text.SpannedString
 import android.text.style.BackgroundColorSpan
 import android.util.Log
 import android.view.View
@@ -82,17 +83,19 @@ class MainActivity : AppCompatActivity() {
                 userInput.text.clear()
                 guessResult.text=checkGuess(guessWord.text.toString().uppercase())
                 val guessResultText = guessResult.text
-                val isAllGreen = if (guessResultText is SpannableString) {
+                val isAllGreen = if (guessResultText is SpannedString) {
                     guessResultText.getSpans(0, guessResultText.length, BackgroundColorSpan::class.java)
                         .all { span ->
+                            Log.d("Word E",span.toString())
                             span.backgroundColor == Color.GREEN
                         }
                 } else {
                     false // Handle the case when guessResultText is not a SpannableString
                 }
+                Log.d("Debug a",isAllGreen.toString())
                 if (isAllGreen) {
                     win()
-                } else if (count == 2 && !isAllGreen) {
+                } else if (count == 3 && !isAllGreen) {
                     stuck()
                 }
             }
@@ -156,7 +159,7 @@ class MainActivity : AppCompatActivity() {
 
             val color = when {
                 guessChar == targetChar -> Color.GREEN // Correct letter and correct position (green)
-                targetChar in guess -> Color.YELLOW // Correct letter but incorrect position (yellow)
+                guessChar in wordToGuess -> Color.YELLOW // Correct letter but incorrect position (yellow)
                 else -> Color.RED // Incorrect letter (red)
             }
 
@@ -177,11 +180,13 @@ class MainActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.congrat).visibility=View.VISIBLE
         streak++
         highScore.text="Streak: " + streak.toString()
+        finalResult.setTextColor(Color.GREEN)
         endGame()
 
     }
     private fun stuck(){
         findViewById<TextView>(R.id.sorry).visibility=View.VISIBLE
+        finalResult.setTextColor(Color.RED)
         endGame()
     }
     private fun charCheck(a:String): Boolean {
