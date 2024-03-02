@@ -27,6 +27,7 @@ import com.github.jinatonic.confetti.CommonConfetti
 import com.github.jinatonic.confetti.ConfettiManager
 import com.github.jinatonic.confetti.ConfettiSource
 import com.github.jinatonic.confetti.confetto.BitmapConfetto
+import pl.droidsonroids.gif.GifImageView
 
 
 class MainActivity : AppCompatActivity() {
@@ -119,6 +120,7 @@ class MainActivity : AppCompatActivity() {
             finalResult.text=""
             buttonR.visibility=View.INVISIBLE
             buttonC.visibility=View.VISIBLE
+            findViewById<GifImageView>(R.id.gif).visibility=View.INVISIBLE
         }
 
         }
@@ -181,12 +183,15 @@ class MainActivity : AppCompatActivity() {
         streak++
         highScore.text="Streak: " + streak.toString()
         finalResult.setTextColor(Color.GREEN)
+        findViewById<GifImageView>(R.id.gif).visibility=View.VISIBLE
         endGame()
 
     }
     private fun stuck(){
         findViewById<TextView>(R.id.sorry).visibility=View.VISIBLE
         finalResult.setTextColor(Color.RED)
+        streak = 0
+        highScore.text="Streak: " + streak.toString()
         endGame()
     }
     private fun charCheck(a:String): Boolean {

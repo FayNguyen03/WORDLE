@@ -5,9 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:id="@+id/container"
-
-    >
+    android:id="@+id/container">
 
     <EditText
         android:id="@+id/userInput"
@@ -287,4 +285,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="24dp"
+        android:src="@drawable/didit"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/congrat"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/gif"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
